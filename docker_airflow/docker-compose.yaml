@@ -119,4 +119,5 @@ services:
 
 volumes:
   postgres-db-volume:
+  my-db:
 
