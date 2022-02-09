@@ -13,14 +13,14 @@ import os
 
 mydir=os.path.join(os.getcwd(),"dags/")
 def generate_data():
-    conn = create_engine("mysql://airflow:airflow@3.110.33.151:3000/airflow") # connect to server
+    conn = create_engine("mysql://mysqluser:mysqlpw@3.110.33.151:3000/inventory") # connect to server
     engine = create_engine('sqlite:///telecom.db', echo = True)
     
-    m = 0
-    while m<10:
-        dataset_name = mydir+"raw_cdr_data.csv" #C:\Users\DELL\Downloads\kafka-telecom-project\docker_airflow\dags\raw_cdr_data.csv
+    rec_count = 0
+    while rec_count < 10:
+        dataset_name = mydir+"raw_cdr_data.csv"
         dataset_header_name = mydir+"raw_cdr_data_header.csv"
-        #n = int(Variable.get('my_iterator'))
+       
         
         raw_cdr_data_header= pd.read_csv(dataset_header_name,low_memory=False)
         raw_cdr_data = pd.read_csv(dataset_name, header=None, low_memory=False)
@@ -29,11 +29,7 @@ def generate_data():
         n=df.index[0]
         print("n=",n)
         raw_cdr_data=raw_cdr_data.iloc[n:(n+1),:]
-        
-        #idx = raw_cdr_data.columns.tolist()
-        #new_df = pd.DataFrame(columns=idx)
-
-        #new_df.loc[n] = raw_cdr_data.iloc[n]
+       
         call_dataset,service_dataset,device_dataset=split_df(raw_cdr_data)
 
         df.to_sql('raw_telecom_data',conn, if_exists='append')
@@ -41,7 +37,7 @@ def generate_data():
         service_dataset.to_sql('service_dataset_mysql',engine, if_exists='append')
         device_dataset.to_sql('device_dataset_mysql',engine, if_exists='append')
         sleep(10)
-        m = m+1
+        rec_count = rec_count+1
    
 
 default_args = {

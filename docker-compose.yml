@@ -177,29 +177,29 @@ services:
       KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
       KAFKA_REST_SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
 
-  # mysql:
-  #   image: debezium/example-mysql:0.9
-  #   container_name: mysql
-  #   restart: always
-  #   environment:
-  #     MYSQL_USER: 'mysqluser'
-  #     MYSQL_PASSWORD: 'mysqlpw'
-  #     MYSQL_ROOT_PASSWORD: 'debezium'
-  #   ports:
-  #     - '3306:3306'
-  #   expose:
-  #     - '3306'
   mysql:
-    image: mysql:5.7
-    container_name: airflow_db
+    image: debezium/example-mysql:0.9
+    container_name: mysql
+    restart: always
     environment:
-            - MYSQL_ROOT_HOST=%
-            - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_DATABASE=airflow
-            - MYSQL_USER=airflow
-            - MYSQL_PASSWORD=airflow
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+      MYSQL_USER: 'mysqluser'
+      MYSQL_PASSWORD: 'mysqlpw'
+      MYSQL_ROOT_PASSWORD: 'debezium'
     ports:
-      - '3000:3306'
+      - '3306:3306'
     expose:
       - '3306'
+  # mysql:
+  #   image: mysql:5.7
+  #   container_name: airflow_db
+  #   environment:
+  #           - MYSQL_ROOT_HOST=%
+  #           - MYSQL_ROOT_PASSWORD=root
+  #           - MYSQL_DATABASE=airflow
+  #           - MYSQL_USER=airflow
+  #           - MYSQL_PASSWORD=airflow
+  #   command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+  #   ports:
+  #     - '3000:3306'
+  #   expose:
+  #     - '3306'
