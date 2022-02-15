@@ -14,7 +14,7 @@ for message in consumer:
 
     #print(json.loads((message.value).decode("utf-8")))
     if (user_id <= 5):
-        URL = "https://hooks.slack.com/services/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"
+        URL = "<webhook url>"
         body = {"text":"Hello "+user}
         headers = {"Content-Type":"application/json"}
 
