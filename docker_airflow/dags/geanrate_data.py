@@ -13,7 +13,7 @@ import os
 
 mydir=os.path.join(os.getcwd(),"dags/")
 def generate_data():
-    conn = create_engine("mysql://mysqluser:mysqlpw@3.110.84.161:3000/inventory") # connect to server
+    conn = create_engine("mysql://mysqluser:mysqlpw@13.232.128.214:3000/inventory") # connect to server
     engine = create_engine('sqlite:///telecom.db', echo = True)
     
     rec_count = 0
@@ -32,7 +32,7 @@ def generate_data():
        
         call_dataset,service_dataset,device_dataset=split_df(raw_cdr_data)
 
-        df.to_sql('raw_telecom_data',conn, if_exists='append')
+        df.to_sql('raw_telecom',conn, if_exists='append')
         call_dataset.to_sql('call_dataset_mysql',engine, if_exists='append')
         service_dataset.to_sql('service_dataset_mysql',engine, if_exists='append')
         device_dataset.to_sql('device_dataset_mysql',engine, if_exists='append')
