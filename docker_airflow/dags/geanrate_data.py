@@ -17,7 +17,7 @@ def generate_data():
     engine = create_engine('sqlite:///telecom.db', echo = True)
     
     rec_count = 0
-    while rec_count < 10:
+    while True:
         dataset_name = mydir+"raw_cdr_data.csv"
         dataset_header_name = mydir+"raw_cdr_data_header.csv"
        
@@ -37,7 +37,7 @@ def generate_data():
         service_dataset.to_sql('service_dataset_mysql',engine, if_exists='append')
         device_dataset.to_sql('device_dataset_mysql',engine, if_exists='append')
         sleep(10)
-        rec_count = rec_count+1
+        #rec_count = rec_count+1
    
 
 default_args = {
