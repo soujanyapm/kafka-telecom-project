@@ -8,7 +8,7 @@ from data_cleaning import split_df
 import pandas as pd
 if __name__ == '__main__':
     # conn = create_engine("postgresql://TEST:password@localhost:5432/TEST") 
-    conn = create_engine('mysql://mysqluser:mysqlpw@172.29.208.1:3306/inventory') # connect to server
+    conn = create_engine('mysql://mysqluser:mysqlpw@13.127.216.182:3306/inventory') # connect to server
     engine = create_engine('sqlite:///telecom.db', echo = True)
     # dataset_name = "data/raw_cdr_data_header.csv"
 
