@@ -13,7 +13,7 @@ import os
 
 mydir=os.path.join(os.getcwd(),"dags/")
 def generate_data():
-    conn = create_engine("mysql://mysqluser:mysqlpw@15.207.221.11:3000/inventory") # connect to server
+    conn = create_engine("mysql://mysqluser:mysqlpw@13.233.105.11:3000/inventory") # connect to server
     engine = create_engine('sqlite:///telecom.db', echo = True)
     
     rec_count = 0
